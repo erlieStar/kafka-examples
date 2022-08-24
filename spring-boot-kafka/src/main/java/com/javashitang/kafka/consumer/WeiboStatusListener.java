@@ -1,4 +1,4 @@
-package com.socialtouch.martech.mbase.dataimporter.consumer;
+package com.javashitang.kafka.consumer;
 
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;

@@ -1,4 +1,4 @@
-package com.socialtouch.martech.mbase.dataimporter.producer;
+package com.javashitang.kafka.producer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

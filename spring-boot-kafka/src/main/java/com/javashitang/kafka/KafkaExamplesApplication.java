@@ -1,6 +1,5 @@
-package com.socialtouch.martech.mbase.dataimporter;
+package com.javashitang.kafka;
 
-import com.socialtouch.martech.mbase.dataimporter.producer.ProducerWithLoop;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
