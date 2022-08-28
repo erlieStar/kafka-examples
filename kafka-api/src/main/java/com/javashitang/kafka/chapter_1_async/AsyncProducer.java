@@ -20,15 +20,9 @@ public class AsyncProducer {
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         for (int i = 0; i < 5; i++) {
-            producer.send(new ProducerRecord<>("quickstart", "test" + i), new Callback() {
-
-                @Override
-                public void onCompletion(RecordMetadata metadata, Exception exception) {
-                    if (exception == null) {
-                        System.out.println("topic "+ metadata.topic());
-                        System.out.println("partition "+ metadata.partition());
-                        System.out.println("offset "+ metadata.offset());
-                    }
+            producer.send(new ProducerRecord<>("quickstart", "test" + i), (recordMetadata, exception) -> {
+                if (exception == null) {
+                    System.out.println("partition " + recordMetadata.partition() + " offset " + recordMetadata.offset());
                 }
             });
         }

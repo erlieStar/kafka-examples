@@ -1,4 +1,4 @@
-package com.javashitang.kafka.chapter_3_autoCommit;
+package com.javashitang.kafka.chapter_2_autoCommit;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

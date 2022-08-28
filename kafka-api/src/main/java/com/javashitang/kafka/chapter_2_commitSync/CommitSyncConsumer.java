@@ -1,4 +1,4 @@
-package com.javashitang.kafka.chapter_3_commitSync;
+package com.javashitang.kafka.chapter_2_commitSync;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -22,7 +22,6 @@ public class CommitSyncConsumer {
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "quickstartGroup");
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // 是否自动提交消息 offset
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
