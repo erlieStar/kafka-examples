@@ -21,10 +21,11 @@
   </properties>
 
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
     <dependency>
       <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka_2.13</artifactId>
-      <version>3.2.1</version>
+      <artifactId>kafka_2.12</artifactId>
+      <version>0.11.0.3</version>
     </dependency>
   </dependencies>
 

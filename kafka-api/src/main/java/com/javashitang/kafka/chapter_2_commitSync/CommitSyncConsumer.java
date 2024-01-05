@@ -28,7 +28,7 @@ public class CommitSyncConsumer {
         consumer.subscribe(Collections.singletonList("quickstart"));
 
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1));
+            ConsumerRecords<String, String> records = consumer.poll(1000);
 
             for (ConsumerRecord<String, String> record : records) {
                 System.out.println(record);
