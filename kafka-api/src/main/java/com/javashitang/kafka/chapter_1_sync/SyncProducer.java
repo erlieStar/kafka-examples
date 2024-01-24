@@ -1,5 +1,6 @@
 package com.javashitang.kafka.chapter_1_sync;
 
+import com.javashitang.kafka.chapter_0_quickstart.KafkaProperties;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -12,19 +13,15 @@ import java.util.Properties;
 public class SyncProducer {
 
     public static void main(String[] args) throws Exception {
-
         Properties properties = new Properties();
-        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaProperties.SERVER_URL);
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         for (int i = 0; i < 5; i++) {
-            RecordMetadata metadata = producer.send(new ProducerRecord<>("quickstart", "test" + i)).get();
-            System.out.println("topic "+ metadata.topic());
-            System.out.println("partition "+ metadata.partition());
-            System.out.println("offset "+ metadata.offset());
+            RecordMetadata metadata = producer.send(new ProducerRecord<>(KafkaProperties.TOPIC, "test" + i)).get();
+            System.out.printf("topic: %s, partition: %s, offset: %s %n", metadata.topic(), metadata.partition(), metadata.offset());
         }
 
         producer.close();

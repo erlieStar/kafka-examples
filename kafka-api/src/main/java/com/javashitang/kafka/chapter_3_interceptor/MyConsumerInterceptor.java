@@ -15,23 +15,15 @@ import java.util.Map;
  */
 public class MyConsumerInterceptor implements ConsumerInterceptor<String, String> {
 
-    private static final Logger log = LoggerFactory.getLogger(MyProducerInterceptor.class);
-
-    /**
-     * 收到消息开始消费之前调用
-     */
     @Override
     public ConsumerRecords<String, String> onConsume(ConsumerRecords<String, String> records) {
-        log.info("收到消息开始消费之前调用");
+        System.out.println("收到消息开始消费之前调用");
         return records;
     }
 
-    /**
-     * 提交位移之后调用
-     */
     @Override
     public void onCommit(Map<TopicPartition, OffsetAndMetadata> offsets) {
-
+        System.out.println("提交位移之后调用");
     }
 
     @Override

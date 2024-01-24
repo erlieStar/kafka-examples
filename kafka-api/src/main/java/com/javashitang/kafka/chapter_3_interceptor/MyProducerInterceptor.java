@@ -14,32 +14,34 @@ import java.util.Map;
  */
 public class MyProducerInterceptor implements ProducerInterceptor<String, String> {
 
-    private static final Logger log = LoggerFactory.getLogger(MyProducerInterceptor.class);
+    private int errorCount = 0;
+    private int successCount = 0;
 
-    /**
-     * 消息发送之前被调用
-     */
     @Override
     public ProducerRecord<String, String> onSend(ProducerRecord<String, String> record) {
-        log.info("消息发送之前被调用");
+        System.out.println("消息发送之前被调用");
         return record;
     }
 
-    /**
-     * 消息发送成功或失败后调用
-     */
     @Override
     public void onAcknowledgement(RecordMetadata metadata, Exception exception) {
-
+        System.out.println("消息被发送到分区之后或者发送失败被调用");
+        if (exception == null) {
+            successCount++;
+        } else {
+            errorCount++;
+        }
     }
 
     @Override
     public void close() {
-
+        System.out.println("拦截器关闭时调用");
+        System.out.println("success count " + successCount);
+        System.out.println("error count " + errorCount);
     }
 
     @Override
     public void configure(Map<String, ?> configs) {
-
+        System.out.println("拦截器实例创建后调用，用于配置拦截器");
     }
 }
