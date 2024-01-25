@@ -25,7 +25,7 @@ public class QuickstartConsumer {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, MyDeserializer.class.getName());
 
         KafkaConsumer<String, User> consumer = new KafkaConsumer<>(properties);
-        consumer.subscribe(Collections.singletonList(KafkaProperties.TOPIC));
+        consumer.subscribe(Collections.singletonList(KafkaProperties.TOPIC2));
 
         while (true) {
             ConsumerRecords<String, User> records = consumer.poll(1000);

@@ -28,11 +28,11 @@ public class MyConsumerInterceptor implements ConsumerInterceptor<String, String
 
     @Override
     public void close() {
-
+        System.out.println("拦截器关闭时调用");
     }
 
     @Override
     public void configure(Map<String, ?> configs) {
-
+        System.out.println("拦截器实例创建后调用，用于配置拦截器");
     }
 }

@@ -20,9 +20,9 @@ public class AsyncProducer {
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         for (int i = 0; i < 5; i++) {
-            producer.send(new ProducerRecord<>(KafkaProperties.TOPIC, "test" + i), (recordMetadata, exception) -> {
-                if (exception != null) {
-                    System.out.println(exception.getMessage());
+            producer.send(new ProducerRecord<>(KafkaProperties.TOPIC, "test" + i), (metadata, exception) -> {
+                if (metadata != null) {
+                    System.out.printf("topic: %s, partition: %s, offset: %s %n", metadata.topic(), metadata.partition(), metadata.offset());
                 }
             });
         }

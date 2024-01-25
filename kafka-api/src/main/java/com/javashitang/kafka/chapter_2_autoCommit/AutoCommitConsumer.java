@@ -1,10 +1,12 @@
 package com.javashitang.kafka.chapter_2_autoCommit;
 
 import com.javashitang.kafka.chapter_0_quickstart.KafkaProperties;
+import com.javashitang.kafka.chapter_3_interceptor.MyConsumerInterceptor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
@@ -26,7 +28,8 @@ public class AutoCommitConsumer {
         // 是否自动提交消息 offset
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         // 自动提交的间隔时间
-        properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+        properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "5000");
+        properties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, MyConsumerInterceptor.class.getName());
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(Collections.singletonList(KafkaProperties.TOPIC));

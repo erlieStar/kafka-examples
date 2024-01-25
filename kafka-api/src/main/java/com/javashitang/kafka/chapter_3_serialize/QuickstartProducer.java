@@ -25,7 +25,7 @@ public class QuickstartProducer {
         KafkaProducer<String, User> producer = new KafkaProducer<>(properties);
 
         for (int i = 0; i < 5; i++) {
-            RecordMetadata metadata = producer.send(new ProducerRecord<>(KafkaProperties.TOPIC2, new User(1L, "li"))).get();
+            RecordMetadata metadata = producer.send(new ProducerRecord<>(KafkaProperties.TOPIC2, new User((long) i, "test"))).get();
             System.out.printf("topic: %s, partition: %s, offset: %s %n", metadata.topic(), metadata.partition(), metadata.offset());
         }
 
